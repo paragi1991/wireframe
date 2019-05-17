@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WastearnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactNumber" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MPIN" Type="numeric" Precision="6" Scale="0" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ResidenceId" Type="bigint" />
+    <Property Name="isVisible" Type="bit" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="residentid" Type="bigint" Nullable="false" />
+    <Property Name="requestedOn" Type="datetime" />
+    <Property Name="status" Type="varchar" MaxLength="10" />
+    <Property Name="completedOn" Type="datetime" />
+    <Property Name="completedBy" Type="tinyint" />
+    <Property Name="feedback" Type="nvarchar(max)" />
+    <Property Name="rating" Type="numeric" Precision="2" Scale="1" />
+    <Property Name="weight" Type="numeric" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Residence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SocietyId" Type="bigint" />
+    <Property Name="ResidenceNumber" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Society">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SocietyName" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Registration_Residence">
+    <End Role="Residence" Type="Self.Residence" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residence">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="ResidenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Residence_Residence">
+    <End Role="Residence" Type="Self.Residence" Multiplicity="0..1" />
+    <End Role="Residence1" Type="Self.Residence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residence">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Residence1">
+        <PropertyRef Name="SocietyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WastearnModelStoreContainer">
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="Wastearn_SA" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="Wastearn_SA" store:Type="Tables" />
+    <EntitySet Name="Residence" EntityType="Self.Residence" Schema="Wastearn_SA" store:Type="Tables" />
+    <EntitySet Name="Society" EntityType="Self.Society" Schema="Wastearn_SA" store:Type="Tables" />
+    <AssociationSet Name="FK_Registration_Residence" Association="Self.FK_Registration_Residence">
+      <End Role="Residence" EntitySet="Residence" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Residence_Residence" Association="Self.FK_Residence_Residence">
+      <End Role="Residence" EntitySet="Residence" />
+      <End Role="Residence1" EntitySet="Residence" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

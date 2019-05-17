@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WastearnModelStoreContainer" CdmEntityContainer="WastearnEntities">
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="WastearnModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="MPIN" ColumnName="MPIN" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ResidenceId" ColumnName="ResidenceId" />
+          <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="WastearnModel.Request">
+        <MappingFragment StoreEntitySet="Requests">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="residentid" ColumnName="residentid" />
+          <ScalarProperty Name="requestedOn" ColumnName="requestedOn" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="completedOn" ColumnName="completedOn" />
+          <ScalarProperty Name="completedBy" ColumnName="completedBy" />
+          <ScalarProperty Name="feedback" ColumnName="feedback" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Residences">
+      <EntityTypeMapping TypeName="WastearnModel.Residence">
+        <MappingFragment StoreEntitySet="Residence">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SocietyId" ColumnName="SocietyId" />
+          <ScalarProperty Name="ResidenceNumber" ColumnName="ResidenceNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Societies">
+      <EntityTypeMapping TypeName="WastearnModel.Society">
+        <MappingFragment StoreEntitySet="Society">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
